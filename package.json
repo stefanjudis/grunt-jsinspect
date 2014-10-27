@@ -1,0 +1,37 @@
+{
+  "name": "grunt-jsinspect",
+  "description": "Grunt task for jsinspect",
+  "version": "0.1.0",
+  "homepage": "https://github.com/stefanjudis/grunt-jsinspect",
+  "author": {
+    "name": "Stefan Judis"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanjudis/grunt-jsinspect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stefanjudis/grunt-jsinspect/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/stefanjudis/grunt-jsinspect/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "jsinspect": "~0.2.0"
+  }
+}
