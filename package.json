@@ -29,7 +29,10 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "jsinspect",
+    "duplicate",
+    "inspect"
   ],
   "dependencies": {
     "jsinspect": "~0.2.0"
