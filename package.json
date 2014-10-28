@@ -6,6 +6,13 @@
   "author": {
     "name": "Stefan Judis"
   },
+  "contributors": [
+    {
+      "name": "Juga Paazmaya",
+      "email": "paazmaya@yahoo.com",
+      "url": "http://paazmaya.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/stefanjudis/grunt-jsinspect.git"
