@@ -21,8 +21,7 @@ module.exports = function(grunt) {
 
     jsinspect: {
       dogfood: {
-        options: {
-        },
+        options: {},
         src: ['tasks/*.js']
       }
     }

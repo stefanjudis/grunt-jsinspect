@@ -31,5 +31,6 @@ grunt.initConfig({
         // Task-specific options go here.
       }
     }
-  },
-})
+  }
+});
+```
