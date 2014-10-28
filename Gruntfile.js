@@ -12,6 +12,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    jshint: {
+      options: {
+        jshintrc: true
+      },
+      all: ['Gruntfile.js', 'taks/**/*.js']
+    },
+
     jsinspect: {
       dogfood: {
         options: {
@@ -23,6 +30,8 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('default', ['jsinspect']);
+  grunt.registerTask('test', ['jshint']);
 };
