@@ -16,8 +16,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('jsinspect', 'Grunt task for jsinspect', function() {
 
     var options = this.options({
-      threshold: 30,
-      diff: false,
+      threshold:   30,
+      diff:        false,
       identifiers: false
     });
 
