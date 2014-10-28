@@ -1,4 +1,3 @@
-grunt-jsinspect
-===============
+# grunt-jsinspect
 
-Grunt task for jsinspect
+Grunt task for running [jsinspect](https://github.com/danielstjules/jsinspect).
