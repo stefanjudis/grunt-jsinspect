@@ -6,12 +6,9 @@
   "author": {
     "name": "Stefan Judis"
   },
-  "contributors": [
-    {
-      "name": "Juga Paazmaya",
-      "email": "paazmaya@yahoo.com",
-      "url": "http://paazmaya.com"
-    }
+  "maintainers": [
+    "Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.com)",
+    "Stefan Judis <stefanjudis@gmail.com> (http://stefanjudis.de)"
   ],
   "repository": {
     "type": "git",
