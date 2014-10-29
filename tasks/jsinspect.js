@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     var options = this.options({
       threshold:   30,
-      diff:        false,
+      diff:        true,
       identifiers: false
     });
 
