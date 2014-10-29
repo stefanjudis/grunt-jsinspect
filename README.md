@@ -7,30 +7,72 @@ Grunt task for running [jsinspect](https://github.com/danielstjules/jsinspect).
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+This plugin requires Grunt `~0.4.5`
+
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
+[Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
+create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and
+use Grunt plugins. Once you're familiar with that process, you may install this
+plugin with this command:
 
 ```shell
 npm install grunt-jsinspect --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your `Gruntfile.js`
+file with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-jsinspect');
 ```
 
-## Config
+## Configuration and available options
+
+A simple configuration example with the default options.
 
 ```js
 grunt.initConfig({
   jsinspect: {
-    task : {
+    examples: {
       options: {
-        // Task-specific options go here.
-      }
+        threshold: 30,
+        diff: false
+        identifiers: false
+      },
+      src: [
+        '**/*.js'
+      ]
     }
   }
 });
 ```
+
+Execute with `grunt jsinspect:examples`.
+
+### options.threshold
+
+Type: `number`
+Default value: `'30'`
+
+
+### options.diff
+
+Type: `boolean`
+Default value: `'false'`
+
+
+### options.identifiers
+
+Type: `boolean`
+Default value: `'false'`
+
+
+## Release history
+
+
+
+## License
+
+
+Copyright (c) Stefan Judis and Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)

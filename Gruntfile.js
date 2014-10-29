@@ -2,7 +2,7 @@
  * grunt-jsinspect
  *
  *
- * Copyright (c) 2014 Stefan Judis
+ * Copyright (c) Stefan Judis and Juga Paazmaya
  * Licensed under the MIT license.
  */
 
