@@ -37,7 +37,7 @@ grunt.initConfig({
     examples: {
       options: {
         threshold: 30,
-        diff: false
+        diff: true
         identifiers: false
       },
       src: [
@@ -53,18 +53,21 @@ Execute with `grunt jsinspect:examples`.
 ### options.threshold
 
 Type: `number`
+
 Default value: `'30'`
 
 
 ### options.diff
 
 Type: `boolean`
-Default value: `'false'`
+
+Default value: `'true'`
 
 
 ### options.identifiers
 
 Type: `boolean`
+
 Default value: `'false'`
 
 
