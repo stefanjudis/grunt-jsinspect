@@ -38,7 +38,8 @@ grunt.initConfig({
       options: {
         threshold: 30,
         diff: true
-        identifiers: false
+        identifiers: false,
+        reporter: 'default'
       },
       src: [
         '**/*.js'
@@ -54,26 +55,39 @@ Execute with `grunt jsinspect:examples`.
 
 Type: `number`
 
-Default value: `'30'`
+Default value: `30`
 
 
 ### options.diff
 
 Type: `boolean`
 
-Default value: `'true'`
+Default value: `true`
 
 
 ### options.identifiers
 
 Type: `boolean`
 
-Default value: `'false'`
+Default value: `false`
+
+
+### options.reporter
+
+Type: `string`
+
+Default value: `'default'`
+
+Currently only `default` is being supported as this is the only report type provided
+by [jsinspect reporters](https://github.com/danielstjules/jsinspect/blob/master/lib/reporters/index.js).
+
+It is exposed as an option so that further development of custom reporters can be started.
 
 
 ## Release history
 
-
+* v0.2.1 (2014-10-29)
+* v0.2.0 (2014-10-29) Initial working release
 
 ## License
 

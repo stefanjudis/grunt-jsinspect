@@ -18,7 +18,8 @@ module.exports = function(grunt) {
     var options = this.options({
       threshold:   30,
       diff:        true,
-      identifiers: false
+      identifiers: false,
+      reporter:    'default'
     });
 
     var inspector = new Inspector(this.filesSrc, {
@@ -27,7 +28,7 @@ module.exports = function(grunt) {
       identifiers: options.identifiers
     });
 
-    var reporterType = new Reporter.default(inspector, options.diff);
+    var reporterType = new Reporter[options.reporter](inspector, options.diff);
 
     inspector.run();
   });
