@@ -14,11 +14,13 @@ var Reporter = require('jsinspect/lib/reporters');
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('jsinspect', 'Grunt task for jsinspect', function() {
+    var taskSucceeded = true;
 
     var options = this.options({
       threshold:   30,
       diff:        true,
       identifiers: false,
+      failOnMatch: true,
       reporter:    'default'
     });
 
@@ -30,6 +32,14 @@ module.exports = function(grunt) {
 
     var reporterType = new Reporter[options.reporter](inspector, options.diff);
 
+    if (options.failOnMatch) {
+      inspector.on('match', function() {
+        taskSucceeded = false;
+      });
+    }
+
     inspector.run();
+
+    return taskSucceeded;
   });
 };

@@ -72,6 +72,14 @@ Type: `boolean`
 Default value: `false`
 
 
+
+### options.failOnMatch
+
+Type: `boolean`
+
+Default value: `'true'`
+
+
 ### options.reporter
 
 Type: `string`
