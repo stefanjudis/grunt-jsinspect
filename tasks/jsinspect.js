@@ -30,6 +30,11 @@ module.exports = function(grunt) {
       identifiers: options.identifiers
     });
 
+    if (!Reporter.hasOwnProperty(options.reporter) || typeof Reporter[options.reporter] !== 'function') {
+      grunt.log.error('Sorry but the configured reporter "' + options.reporter + '" does not exist, thus exiting');
+      return false;
+    }
+
     var reporterType = new Reporter[options.reporter](inspector, options.diff);
 
     if (options.failOnMatch) {
