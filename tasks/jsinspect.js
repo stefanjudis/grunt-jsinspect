@@ -20,7 +20,8 @@ module.exports = function(grunt) {
       threshold:   30,
       diff:        true,
       identifiers: false,
-      failOnMatch: true
+      failOnMatch: true,
+      reporter:    'default'
     });
 
     var inspector = new Inspector(this.filesSrc, {
@@ -29,7 +30,12 @@ module.exports = function(grunt) {
       identifiers: options.identifiers
     });
 
-    var reporterType = new Reporter.default(inspector, options.diff);
+    if (!Reporter.hasOwnProperty(options.reporter) || typeof Reporter[options.reporter] !== 'function') {
+      grunt.log.error('Sorry but the configured reporter "' + options.reporter + '" does not exist, thus exiting');
+      return false;
+    }
+
+    var reporterType = new Reporter[options.reporter](inspector, options.diff);
 
     if (options.failOnMatch) {
       inspector.on('match', function() {
