@@ -16,21 +16,38 @@ module.exports = function(grunt) {
       options: {
         jshintrc: true
       },
-      all: ['Gruntfile.js', 'taks/**/*.js']
+      all: ['Gruntfile.js', 'tasks/*.js', '<%= nodeunit.tests %>']
+    },
+
+    clean: {
+      tests: ['tmp']
     },
 
     jsinspect: {
       dogfood: {
         options: {},
         src: ['tasks/*.js']
+      },
+      test: {
+        options: {
+          threshold: 5,
+          failOnMatch: false
+        },
+        src: ['test/fixtures/*.js']
       }
+    },
+
+    nodeunit: {
+      tests: ['test/*_test.js']
     }
 
   });
 
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  grunt.registerTask('default', ['jsinspect']);
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('default', ['jsinspect:dogfood']);
+  grunt.registerTask('test', ['jshint', 'clean', 'jsinspect:test', 'nodeunit']);
 };
