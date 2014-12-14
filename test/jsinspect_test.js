@@ -6,10 +6,12 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
+var runTask = require('grunt-run-task');
+var grunt = require('grunt');
+var task = require('../tasks/jsinspect');
+var write = process.stdout.write;
 
-// Commented out for jshint happiness
-//var grunt = require('grunt');
+'use strict';
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -33,12 +35,126 @@
 
 exports.jsinspect = {
   setUp: function(done) {
-    // setup here if necessary
+    // mock process.stdout.write to have clean results
+    process.stdout.write = function() {};
+    runTask.loadTasks('tasks');
     done();
   },
-  oneDuplicate: function(test) {
-    test.expect(0);
+
+
+  tearDown : function(callback) {
+    process.stdout.write = write;
+
+    callback();
+  },
+
+
+  registerTask: function(test) {
+    task(grunt);
+
+    test.strictEqual(grunt.task.exists('jsinspect'), true);
 
     test.done();
+  },
+
+  executeTask: {
+    reporters : {
+      defaultReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(a) {
+            test.done();
+          }
+        );
+      },
+
+      existantReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                failOnMatch: false,
+                threshold: 5,
+                reporter: 'default'
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(typeof error, 'undefined');
+            test.done();
+          }
+        );
+      },
+
+      notExistantReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                reporter: 'foo'
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(error instanceof Error, true);
+            test.done();
+          }
+        );
+      }
+    },
+
+    failOnMatch : {
+      succeedOnMatch: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                failOnMatch: false,
+                threshold: 5
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(typeof error, 'undefined');
+            test.done();
+          }
+        );
+      },
+
+      failOnMatch: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                failOnMatch: true,
+                threshold: 5
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(error instanceof Error, true);
+            test.done();
+          }
+        );
+      }
+    }
   }
 };

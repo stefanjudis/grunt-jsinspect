@@ -14,6 +14,7 @@ var Reporter = require('jsinspect/lib/reporters');
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('jsinspect', 'Grunt task for jsinspect', function() {
+    var done = this.async();
     var taskSucceeded = true;
 
     var options = this.options({
@@ -34,7 +35,9 @@ module.exports = function(grunt) {
         typeof Reporter[options.reporter] !== 'function') {
       grunt.log.error('Sorry but the configured reporter "' + options.reporter +
         '" does not exist, thus exiting');
-      return false;
+      done(false);
+
+      return;
     }
 
     this.reporterType = new Reporter[options.reporter](inspector, options.diff);
@@ -45,8 +48,11 @@ module.exports = function(grunt) {
       });
     }
 
+    inspector.on('end', function() {
+      done(taskSucceeded);
+    });
+
     inspector.run();
 
-    return taskSucceeded;
   });
 };
