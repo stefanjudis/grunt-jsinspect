@@ -1,7 +1,6 @@
 /*
  * grunt-jsinspect
  *
- *
  * Copyright (c) Stefan Judis and Juga Paazmaya
  * Licensed under the MIT license.
  */
@@ -22,6 +21,7 @@ module.exports = function(grunt) {
       diff:        true,
       identifiers: false,
       failOnMatch: true,
+      suppress:    100,
       reporter:    'default'
     });
 
@@ -40,7 +40,10 @@ module.exports = function(grunt) {
       return;
     }
 
-    this.reporterType = new Reporter[options.reporter](inspector, options.diff);
+    this.reporterType = new Reporter[options.reporter](inspector, {
+      diff: options.diff,
+      suppress: options.suppress
+    });
 
     if (options.failOnMatch) {
       inspector.on('match', function() {

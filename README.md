@@ -36,10 +36,12 @@ grunt.initConfig({
   jsinspect: {
     examples: {
       options: {
-        threshold: 30,
-        diff: true
+        threshold:   30,
+        diff:        true,
         identifiers: false,
-        reporter: 'default'
+        failOnMatch: true,
+        suppress:    100,
+        reporter:    'default'
       },
       src: [
         '**/*.js'
@@ -57,6 +59,8 @@ Type: `number`
 
 Default value: `30`
 
+Number of nodes
+
 
 ### options.diff
 
@@ -71,6 +75,27 @@ Type: `boolean`
 
 Default value: `false`
 
+Match identifiers
+
+
+### options.reporter
+
+Type: `string`
+
+Default value: `'default'`
+
+Specify the reporter to use.
+Possible values: `'default'`, `'json'`, and `'pmd'`.
+
+
+### options.suppress
+
+Type: `number`
+
+Default value: `100`
+
+Length to suppress diffs.
+Use `0` to disable.
 
 
 ### options.failOnMatch
@@ -80,24 +105,7 @@ Type: `boolean`
 Default value: `'true'`
 
 
-### options.reporter
-
-Type: `string`
-
-Default value: `'default'`
-
-Currently only `default` is being supported as this is the only report type provided
-by [jsinspect reporters](https://github.com/danielstjules/jsinspect/blob/master/lib/reporters/index.js).
-
-It is exposed as an option so that further development of custom reporters can be started.
-
-
-## Release history
-
-* v0.2.1 (2014-10-29)
-* v0.2.0 (2014-10-29) Initial working release
-
 ## License
 
-
 Copyright (c) Stefan Judis and Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)
+
