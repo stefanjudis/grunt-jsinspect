@@ -1,7 +1,6 @@
 /*
  * grunt-jsinspect
  *
- *
  * Copyright (c) Stefan Judis and Juga Paazmaya
  * Licensed under the MIT license.
  */
@@ -31,7 +30,8 @@ module.exports = function(grunt) {
       test: {
         options: {
           threshold: 5,
-          failOnMatch: false
+          failOnMatch: false,
+          reporter: 'default'
         },
         src: ['test/fixtures/*.js']
       }

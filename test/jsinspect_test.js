@@ -1,7 +1,6 @@
 /*
  * grunt-jsinspect
  *
- *
  * Copyright (c) Stefan Judis and Juga Paazmaya
  * Licensed under the MIT license.
  */
@@ -67,6 +66,63 @@ exports.jsinspect = {
               options: {
                 threshold: 5,
                 failOnMatch: true
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(a) {
+            test.done();
+          }
+        );
+      },
+
+      suppressDefaultReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true,
+                suppress: 0
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(a) {
+            test.done();
+          }
+        );
+      },
+
+      jsonReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true,
+                reporter: 'json'
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function(a) {
+            test.done();
+          }
+        );
+      },
+
+      pmdReporter: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true,
+                reporter: 'pmd'
               },
               src: ['test/fixtures/*.js']
             }
