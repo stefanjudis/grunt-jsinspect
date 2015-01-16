@@ -21,7 +21,7 @@
     }
   ],
   "scripts": {
-    "test": "node_modules/grunt-contrib-nodeunit/node_modules/nodeunit/bin/nodeunit test/"
+    "test": "grunt -- test"
   },
   "engines": {
     "node": ">= 0.8.0"
