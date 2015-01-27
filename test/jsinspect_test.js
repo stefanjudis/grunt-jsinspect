@@ -4,13 +4,13 @@
  * Copyright (c) Stefan Judis and Juga Paazmaya
  * Licensed under the MIT license.
  */
+'use strict';
 
 var runTask = require('grunt-run-task');
 var grunt = require('grunt');
 var task = require('../tasks/jsinspect');
 var write = process.stdout.write;
 
-'use strict';
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -41,7 +41,7 @@ exports.jsinspect = {
   },
 
 
-  tearDown : function(callback) {
+  tearDown: function(callback) {
     process.stdout.write = write;
 
     callback();
@@ -57,7 +57,7 @@ exports.jsinspect = {
   },
 
   executeTask: {
-    reporters : {
+    reporters: {
       defaultReporter: function(test) {
         runTask(
           'jsinspect:test',
@@ -70,7 +70,7 @@ exports.jsinspect = {
               src: ['test/fixtures/*.js']
             }
           },
-          function(a) {
+          function() {
             test.done();
           }
         );
@@ -89,7 +89,7 @@ exports.jsinspect = {
               src: ['test/fixtures/*.js']
             }
           },
-          function(a) {
+          function() {
             test.done();
           }
         );
@@ -108,7 +108,7 @@ exports.jsinspect = {
               src: ['test/fixtures/*.js']
             }
           },
-          function(a) {
+          function() {
             test.done();
           }
         );
@@ -127,7 +127,7 @@ exports.jsinspect = {
               src: ['test/fixtures/*.js']
             }
           },
-          function(a) {
+          function() {
             test.done();
           }
         );
@@ -173,7 +173,7 @@ exports.jsinspect = {
       }
     },
 
-    failOnMatch : {
+    failOnMatch: {
       succeedOnMatch: function(test) {
         runTask(
           'jsinspect:test',
