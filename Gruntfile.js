@@ -11,9 +11,9 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    jshint: {
+    eslint: {
       options: {
-        jshintrc: true
+        config: '.eslintrc'
       },
       all: ['Gruntfile.js', 'tasks/*.js', '<%= nodeunit.tests %>']
     },
@@ -44,10 +44,10 @@ module.exports = function(grunt) {
   });
 
   grunt.loadTasks('tasks');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   grunt.registerTask('default', ['jsinspect:dogfood']);
-  grunt.registerTask('test', ['jshint', 'clean', 'jsinspect:test', 'nodeunit']);
+  grunt.registerTask('test', ['eslint', 'clean', 'jsinspect:test', 'nodeunit']);
 };
