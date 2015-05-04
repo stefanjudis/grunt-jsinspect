@@ -31,7 +31,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-eslint": "^11.0.0",
+    "grunt-eslint": "^12.0.0",
     "grunt-run-task": "^0.1.2"
   },
   "peerDependencies": {
