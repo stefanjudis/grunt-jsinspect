@@ -3,7 +3,7 @@
   "description": "Grunt task for jsinspect",
   "version": "0.4.0",
   "homepage": "https://github.com/stefanjudis/grunt-jsinspect",
-  "maintainers": [
+  "contributors": [
     "Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.com)",
     "Stefan Judis <stefanjudis@gmail.com> (http://stefanjudis.de)"
   ],
