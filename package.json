@@ -1,7 +1,7 @@
 {
   "name": "grunt-jsinspect",
   "description": "Grunt task for jsinspect",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "homepage": "https://github.com/stefanjudis/grunt-jsinspect",
   "contributors": [
     "Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.com)",
