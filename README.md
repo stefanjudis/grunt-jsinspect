@@ -1,6 +1,6 @@
-[![Build Status](http://img.shields.io/travis/stefanjudis/grunt-jsinspect.svg)](https://travis-ci.org/stefanjudis/grunt-jsinspect) 
-[![NPM version](http://img.shields.io/npm/v/grunt-jsinspect.svg)](http://badge.fury.io/js/grunt-jsinspect) 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) 
+[![Build Status](http://img.shields.io/travis/stefanjudis/grunt-jsinspect.svg)](https://travis-ci.org/stefanjudis/grunt-jsinspect)
+[![NPM version](http://img.shields.io/npm/v/grunt-jsinspect.svg)](http://badge.fury.io/js/grunt-jsinspect)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![Dependency Status](https://david-dm.org/stefanjudis/grunt-jsinspect.svg)](https://david-dm.org/stefanjudis/grunt-jsinspect)
 
 ![image](./logo.jpg)
@@ -55,6 +55,27 @@ grunt.initConfig({
 ```
 
 Execute with `grunt jsinspect:examples`.
+
+### src
+
+Type: `string|array`
+
+Globbing pattern to get files to run `grunt-jsinspect` against.
+
+*Site note: In case you want to ignore files you can do this with prepending `!`.*
+
+```
+grunt.initConfig({
+  jsinspect: {
+    examples: {
+      src: [
+        '**/*.js',
+        '!**/node_modules/**'  // ignore node_modules folder
+      ]
+    }
+  }
+});
+```
 
 ### options.threshold
 
