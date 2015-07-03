@@ -210,6 +210,44 @@ exports.jsinspect = {
             test.done();
           }
         );
+      },
+
+      succeedOnThresholdMatch: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                failOnMatch: 3,
+                threshold: 5
+              },
+              src: ['test/fixtures/two-duplicates.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(typeof error, 'undefined');
+            test.done();
+          }
+        );
+      },
+
+      failOnThresholdMatch: function(test) {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                failOnMatch: 2,
+                threshold: 5
+              },
+              src: ['test/fixtures/two-duplicates.js']
+            }
+          },
+          function(error) {
+            test.strictEqual(error instanceof Error, true);
+            test.done();
+          }
+        );
       }
     }
   }
