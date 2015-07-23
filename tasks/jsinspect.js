@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           taskSucceeded = false;
         }
       });
-    } else if (options.failOnMatch) {
+    } else if (options.failOnMatch === true) {
       // Handle failOnMatch boolean
       inspector.on('match', function() {
         taskSucceeded = false;
