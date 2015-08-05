@@ -124,9 +124,11 @@ Use `0` to disable.
 
 ### options.failOnMatch
 
-Type: `boolean`
+Type: `boolean|number`
 
 Default value: `'true'`
+
+Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
 
 
 ## License

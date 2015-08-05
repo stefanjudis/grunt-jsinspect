@@ -15,6 +15,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('jsinspect', 'Grunt task for jsinspect', function() {
     var done = this.async();
     var taskSucceeded = true;
+    var nbOfMatches = 0;
 
     var options = this.options({
       threshold:   30,
@@ -45,7 +46,16 @@ module.exports = function(grunt) {
       suppress: options.suppress
     });
 
-    if (options.failOnMatch) {
+    if (typeof options.failOnMatch === 'number') {
+      // Handle failOnMatch threshold.
+      inspector.on('match', function() {
+        nbOfMatches++;
+        if (nbOfMatches >= options.failOnMatch) {
+          taskSucceeded = false;
+        }
+      });
+    } else if (options.failOnMatch === true) {
+      // Handle failOnMatch boolean
       inspector.on('match', function() {
         taskSucceeded = false;
       });
