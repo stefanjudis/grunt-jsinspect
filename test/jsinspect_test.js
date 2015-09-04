@@ -6,6 +6,7 @@
  */
 'use strict';
 
+var fs = require('fs');
 var runTask = require('grunt-run-task');
 var grunt = require('grunt');
 var task = require('../tasks/jsinspect');
@@ -43,7 +44,6 @@ exports.jsinspect = {
 
   tearDown: function(callback) {
     process.stdout.write = write;
-
     callback();
   },
 
@@ -249,6 +249,33 @@ exports.jsinspect = {
           }
         );
       }
+    },
+
+    reportToFile: function(test) {
+      fs.mkdir('tmp', function () {
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true,
+                reporter: 'json',
+                outputPath: 'tmp/report.json'
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function() {
+            var result = require('./../tmp/report.json');
+            test.ok(Array.isArray(result));
+            test.strictEqual(result.length, 3);
+            fs.unlink('tmp/report.json', function () {
+                fs.rmdir('tmp', test.done);
+            });
+          }
+        );
+      });
     }
   }
 };
