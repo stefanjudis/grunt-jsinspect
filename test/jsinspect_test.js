@@ -6,7 +6,8 @@
  */
 'use strict';
 
-var fs = require('fs');
+var path = require('path');
+var tmp = require('tmp');
 var runTask = require('grunt-run-task');
 var grunt = require('grunt');
 var task = require('../tasks/jsinspect');
@@ -35,6 +36,9 @@ var write = process.stdout.write;
 
 exports.jsinspect = {
   setUp: function(done) {
+    // cleanup the temporary files even when an uncaught exception occurs
+    tmp.setGracefulCleanup();
+
     // mock process.stdout.write to have clean results
     process.stdout.write = function() {};
     runTask.loadTasks('tasks');
@@ -252,7 +256,9 @@ exports.jsinspect = {
     },
 
     reportToFile: function(test) {
-      fs.mkdir('tmp', function () {
+      tmp.dir(function (err, tmpDir) {
+        if (err) { throw err; }
+        var outputPath = path.join(tmpDir, 'report.json');
         runTask(
           'jsinspect:test',
           {
@@ -261,18 +267,16 @@ exports.jsinspect = {
                 threshold: 5,
                 failOnMatch: true,
                 reporter: 'json',
-                outputPath: 'tmp/report.json'
+                outputPath: outputPath
               },
               src: ['test/fixtures/*.js']
             }
           },
           function() {
-            var result = require('./../tmp/report.json');
+            var result = require(outputPath);
             test.ok(Array.isArray(result));
             test.strictEqual(result.length, 3);
-            fs.unlink('tmp/report.json', function () {
-                fs.rmdir('tmp', test.done);
-            });
+            test.done();
           }
         );
       });
