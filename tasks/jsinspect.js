@@ -7,6 +7,7 @@
 
 'use strict';
 
+var fs = require('fs');
 var Inspector = require('jsinspect/lib/inspector');
 var Reporter = require('jsinspect/lib/reporters');
 
@@ -41,7 +42,14 @@ module.exports = function(grunt) {
       return;
     }
 
+    var writableStream;
+    if (typeof options.outputPath === 'string') {
+      // The user wants the output to be written to a file, so pass a writable stream as an option to the reporter.
+      writableStream = fs.createWriteStream(options.outputPath, {encoding: 'utf8', flags: 'w'});
+    }
+
     this.reporterType = new Reporter[options.reporter](inspector, {
+      writableStream: writableStream,
       diff: options.diff,
       suppress: options.suppress
     });
@@ -55,15 +63,21 @@ module.exports = function(grunt) {
         }
       });
     } else if (options.failOnMatch === true) {
-      // Handle failOnMatch boolean
+      // Handle failOnMatch boolean.
       inspector.on('match', function() {
         taskSucceeded = false;
       });
     }
 
-    inspector.on('end', function() {
-      done(taskSucceeded);
-    });
+    if (writableStream) {
+      writableStream.on('finish', function() {
+        done(taskSucceeded);
+      });
+    } else {
+      inspector.on('end', function() {
+        done(taskSucceeded);
+      });
+    }
 
     inspector.run();
 

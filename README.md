@@ -13,10 +13,10 @@ Grunt task for running [jsinspect](https://github.com/danielstjules/jsinspect).
 
 This plugin requires Grunt `~0.4.5`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the
+If you haven’t used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
 create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and
-use Grunt plugins. Once you're familiar with that process, you may install this
+use Grunt plugins. Once you’re familiar with that process, you may install this
 plugin with this command:
 
 ```shell
@@ -110,6 +110,17 @@ Default value: `'default'`
 
 Specify the reporter to use.
 Possible values: `'default'`, `'json'`, and `'pmd'`.
+
+
+### options.outputPath
+
+Type: `string`
+
+Default value: `undefined`
+
+Specify the path of the output file.  
+The destination directory must already exist.
+You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
 
 
 ### options.suppress

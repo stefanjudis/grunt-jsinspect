@@ -18,10 +18,6 @@ module.exports = function(grunt) {
       all: ['Gruntfile.js', 'tasks/*.js', '<%= nodeunit.tests %>']
     },
 
-    clean: {
-      tests: ['tmp']
-    },
-
     jsinspect: {
       dogfood: {
         options: {},
@@ -45,9 +41,8 @@ module.exports = function(grunt) {
 
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   grunt.registerTask('default', ['jsinspect:dogfood']);
-  grunt.registerTask('test', ['eslint', 'clean', 'jsinspect:test', 'nodeunit']);
+  grunt.registerTask('test', ['eslint', 'jsinspect:test', 'nodeunit']);
 };
