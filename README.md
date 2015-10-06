@@ -6,7 +6,7 @@
 ![image](./logo.jpg)
 # grunt-jsinspect
 
-Grunt task for running [jsinspect](https://github.com/danielstjules/jsinspect).
+[Grunt](http://gruntjs.com/) task for running [jsinspect](https://github.com/danielstjules/jsinspect) in order to detect copy-pasted and structurally similar JavaScript code.
 
 
 ## Getting Started
@@ -44,7 +44,8 @@ grunt.initConfig({
         identifiers: false,
         failOnMatch: true,
         suppress:    100,
-        reporter:    'default'
+        reporter:    'default',
+        configFile:  '.jsinspectrc'
       },
       src: [
         '**/*.js'
@@ -118,7 +119,7 @@ Type: `string`
 
 Default value: `undefined`
 
-Specify the path of the output file.  
+Specify the path of the output file.
 The destination directory must already exist.
 You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
 
@@ -140,6 +141,16 @@ Type: `boolean|number`
 Default value: `'true'`
 
 Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
+
+
+### options.configFile
+
+Type: `string`
+
+Default value: `'.jsinspectrc'`
+
+In case the given JSON file exists, it will be used for setting the configuration options.
+Please [see the `jsinspect` for details](https://github.com/danielstjules/jsinspect#usage).
 
 
 ## License

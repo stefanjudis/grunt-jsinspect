@@ -8,6 +8,7 @@
 'use strict';
 
 var fs = require('fs');
+var strip = require('strip-json-comments');
 var Inspector = require('jsinspect/lib/inspector');
 var Reporter = require('jsinspect/lib/reporters');
 
@@ -24,8 +25,20 @@ module.exports = function(grunt) {
       identifiers: false,
       failOnMatch: true,
       suppress:    100,
-      reporter:    'default'
+      reporter:    'default',
+      configFile:  '.jsinspectrc'
     });
+
+    if (fs.existsSync(options.configFile) && fs.lstatSync(options.configFile).isFile()) {
+      var contents = strip(fs.readFileSync(options.configFile, 'utf8'));
+      var rc = JSON.parse(contents);
+
+      Object.keys(options).forEach(function (key) {
+        if (rc.hasOwnProperty(key)) {
+          options[key] = rc[key];
+        }
+      });
+    }
 
     var inspector = new Inspector(this.filesSrc, {
       threshold:   options.threshold,

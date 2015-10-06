@@ -39,6 +39,7 @@
     "inspect"
   ],
   "dependencies": {
-    "jsinspect": "~0.7.0"
+    "jsinspect": "~0.7.0",
+    "strip-json-comments": "^1.0.4"
   }
 }
