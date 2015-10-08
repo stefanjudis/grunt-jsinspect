@@ -31,7 +31,13 @@ module.exports = function(grunt) {
 
     if (fs.existsSync(options.configFile) && fs.lstatSync(options.configFile).isFile()) {
       var contents = strip(fs.readFileSync(options.configFile, 'utf8'));
-      var rc = JSON.parse(contents);
+      var rc;
+      try {
+        rc = JSON.parse(contents);
+      }
+      catch (error) {
+        throw new Error('The JSON configuration file (' + options.configFile + ') is not valid.');
+      }
 
       Object.keys(options).forEach(function (key) {
         if (rc.hasOwnProperty(key)) {

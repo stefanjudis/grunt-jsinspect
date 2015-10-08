@@ -57,6 +57,12 @@ grunt.initConfig({
 
 Execute with `grunt jsinspect:examples`.
 
+Please note that in case the configuration file exists and its name matches the default value
+`.jsinspectrc`, it will be used to override any other configuration option that might be present
+in the file.
+In case you have the `.jsinspectrc` file in your project and do not want to use it for a particular
+configuration, set the `options.configFile` to point to a non existing file.
+
 ### src
 
 Type: `string|array`
@@ -65,7 +71,7 @@ Globbing pattern to get files to run `grunt-jsinspect` against.
 
 *Site note: In case you want to ignore files you can do this with prepending `!`.*
 
-```
+```js
 grunt.initConfig({
   jsinspect: {
     examples: {
@@ -77,6 +83,31 @@ grunt.initConfig({
   }
 });
 ```
+
+
+### options.configFile
+
+Type: `string`
+
+Default value: `'.jsinspectrc'`
+
+In case the given JSON file exists, it will be used for setting and overriding any
+other options defined via `Gruntfile.js` configuration
+Please [see the `jsinspect` for details](https://github.com/danielstjules/jsinspect#usage).
+
+The configuration file should be valid JSON, but can contain comments, which are stripped away via
+[`strip-json-comments`](https://www.npmjs.com/package/strip-json-comments) internally:
+
+```js
+{
+  "threshold":     30,
+  "identifiers":   true,
+  "ignore":        "Test.js|Spec.js", // used as RegExp,
+  "reporter":      "json",
+  "suppress":      100
+}
+```
+
 
 ### options.threshold
 
@@ -112,6 +143,10 @@ Default value: `'default'`
 Specify the reporter to use.
 Possible values: `'default'`, `'json'`, and `'pmd'`.
 
+Please see the
+[`lib/reporters/index.js`](https://github.com/danielstjules/jsinspect/blob/master/lib/reporters/index.js)
+file of the `jsinspect` project in order to find out about the existing reporters.
+
 
 ### options.outputPath
 
@@ -141,16 +176,6 @@ Type: `boolean|number`
 Default value: `'true'`
 
 Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
-
-
-### options.configFile
-
-Type: `string`
-
-Default value: `'.jsinspectrc'`
-
-In case the given JSON file exists, it will be used for setting the configuration options.
-Please [see the `jsinspect` for details](https://github.com/danielstjules/jsinspect#usage).
 
 
 ## License
