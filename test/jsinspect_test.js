@@ -290,7 +290,7 @@ exports.jsinspect = {
         {
           test: {
             options: {
-              threshold: 5,
+              threshold: 50,
               failOnMatch: true,
               reporter: 'json',
               configFile: 'test/fixtures/config.json'
@@ -298,12 +298,9 @@ exports.jsinspect = {
             src: ['test/fixtures/*.js']
           }
         },
-        function() {
-          /*
-          var result = require(outputPath);
-          test.ok(Array.isArray(result));
-          test.strictEqual(result.length, 3);
-          */
+        function(error) {
+          // With the high threshold there would be no error, but config file has low
+          test.strictEqual(error instanceof Error, true);
           test.done();
         }
       );
