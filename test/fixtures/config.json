@@ -1,0 +1,7 @@
+{
+  "threshold":     3,
+  "identifiers":   true,
+  "ignore":        "one", // used as RegExp,
+  "reporter":      "pmd",
+  "suppress":      100
+}
