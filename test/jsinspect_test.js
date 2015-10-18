@@ -257,7 +257,9 @@ exports.jsinspect = {
 
     reportToFile: function(test) {
       tmp.dir(function (err, tmpDir) {
-        if (err) { throw err; }
+        if (err) {
+          throw err;
+        }
         var outputPath = path.join(tmpDir, 'report.json');
         runTask(
           'jsinspect:test',
@@ -280,6 +282,28 @@ exports.jsinspect = {
           }
         );
       });
+    },
+
+    useConfigFile: function(test) {
+      runTask(
+        'jsinspect:test',
+        {
+          test: {
+            options: {
+              threshold: 50,
+              failOnMatch: true,
+              reporter: 'json',
+              configFile: 'test/fixtures/config.json'
+            },
+            src: ['test/fixtures/*.js']
+          }
+        },
+        function(error) {
+          // With the high threshold there would be no error, but config file has low
+          test.strictEqual(error instanceof Error, true);
+          test.done();
+        }
+      );
     }
   }
 };
