@@ -84,6 +84,11 @@ grunt.initConfig({
 });
 ```
 
+You can also inspect [`jsx` files used in React.js](http://facebook.github.io/react/docs/jsx-in-depth.html),
+simply by using that suffix in the `src` list.
+The command line version of `jsinspect` uses a specific flag for this,
+[namely `--jsx`](https://github.com/danielstjules/jsinspect#usage).
+
 
 ### options.configFile
 
@@ -173,7 +178,7 @@ Use `0` to disable.
 
 Type: `boolean|number`
 
-Default value: `'true'`
+Default value: `true`
 
 Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
 
