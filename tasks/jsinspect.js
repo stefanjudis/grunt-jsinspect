@@ -64,6 +64,10 @@ module.exports = function(grunt) {
     var writableStream;
     if (typeof options.outputPath === 'string') {
       // The user wants the output to be written to a file, so pass a writable stream as an option to the reporter.
+      var path = options.outputPath.split(/[/\\]/g).slice(0, -1).join('/');
+      if (path) {
+          grunt.file.mkdir(path);
+      }
       writableStream = fs.createWriteStream(options.outputPath, {encoding: 'utf8', flags: 'w'});
     }
 
