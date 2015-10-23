@@ -8,6 +8,7 @@
 'use strict';
 
 var fs = require('fs');
+var path = require('path');
 var strip = require('strip-json-comments');
 var Inspector = require('jsinspect/lib/inspector');
 var Reporter = require('jsinspect/lib/reporters');
@@ -64,9 +65,9 @@ module.exports = function(grunt) {
     var writableStream;
     if (typeof options.outputPath === 'string') {
       // The user wants the output to be written to a file, so pass a writable stream as an option to the reporter.
-      var path = options.outputPath.split(/[/\\]/g).slice(0, -1).join('/');
-      if (path) {
-          grunt.file.mkdir(path);
+      var dir = path.dirname(options.outputPath);
+      if (dir) {
+          grunt.file.mkdir(dir);
       }
       writableStream = fs.createWriteStream(options.outputPath, {encoding: 'utf8', flags: 'w'});
     }
