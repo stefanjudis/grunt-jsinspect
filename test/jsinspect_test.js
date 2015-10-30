@@ -284,6 +284,35 @@ exports.jsinspect = {
       });
     },
 
+    reportToFileInFolderThatDoesNotExist: function(test) {
+      tmp.dir(function (err, tmpDir) {
+        if (err) {
+          throw err;
+        }
+        var outputPath = path.join(tmpDir, 'does/not/exist/report.json');
+        runTask(
+          'jsinspect:test',
+          {
+            test: {
+              options: {
+                threshold: 5,
+                failOnMatch: true,
+                reporter: 'json',
+                outputPath: outputPath
+              },
+              src: ['test/fixtures/*.js']
+            }
+          },
+          function() {
+            var result = require(outputPath);
+            test.ok(Array.isArray(result));
+            test.strictEqual(result.length, 3);
+            test.done();
+          }
+        );
+      });
+    },
+
     useConfigFile: function(test) {
       runTask(
         'jsinspect:test',
