@@ -97,9 +97,6 @@ module.exports = function(grunt) {
       writableStream.on('finish', function() {
         done(taskSucceeded);
       });
-      writableStream.on('error', function() {
-        throw new Error('Can not write to ' + options.outputPath);
-      });
       writableStream.on('open', function() {
         inspector.run();
       });
