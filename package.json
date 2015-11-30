@@ -16,7 +16,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "grunt -- test"
+    "test": "grunt -- test",
+    "lint": "grunt eslint"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -25,9 +26,9 @@
     "grunt": "~0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-eslint": "^12.0.0",
-    "grunt-run-task": "^0.1.2",
-    "tmp": "0.0.27"
+    "grunt-eslint": "^17.3.1",
+    "grunt-run-task": "^0.2.0",
+    "tmp": "0.0.28"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
@@ -39,7 +40,7 @@
     "inspect"
   ],
   "dependencies": {
-    "jsinspect": "~0.7.0",
-    "strip-json-comments": "^1.0.4"
+    "jsinspect": "~0.7.2",
+    "strip-json-comments": "^2.0.0"
   }
 }
