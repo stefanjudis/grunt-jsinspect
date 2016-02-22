@@ -37,7 +37,7 @@ var write = process.stdout.write;
 exports.jsinspect = {
   setUp: function(done) {
     // cleanup the temporary files even when an uncaught exception occurs
-    tmp.setGracefulCleanup();
+    //tmp.setGracefulCleanup();
 
     // mock process.stdout.write to have clean results
     process.stdout.write = function() {};
@@ -241,7 +241,7 @@ exports.jsinspect = {
           {
             test: {
               options: {
-                failOnMatch: 2,
+                failOnMatch: 1,
                 threshold: 5
               },
               src: ['test/fixtures/two-duplicates.js']
@@ -256,11 +256,12 @@ exports.jsinspect = {
     },
 
     reportToFile: function(test) {
-      tmp.dir(function (err, tmpDir) {
+      tmp.dir({dir: __dirname}, function (err, tmpDir) {
         if (err) {
           throw err;
         }
         var outputPath = path.join(tmpDir, 'report.json');
+        console.log('outputPath: ' + outputPath);
         runTask(
           'jsinspect:test',
           {
@@ -277,7 +278,8 @@ exports.jsinspect = {
           function() {
             var result = require(outputPath);
             test.ok(Array.isArray(result));
-            test.strictEqual(result.length, 3);
+            test.strictEqual(result.length, 1);
+            test.ok(result[0].hasOwnProperty('instances'));
             test.done();
           }
         );
@@ -306,7 +308,8 @@ exports.jsinspect = {
           function() {
             var result = require(outputPath);
             test.ok(Array.isArray(result));
-            test.strictEqual(result.length, 3);
+            test.strictEqual(result.length, 1);
+            test.ok(result[0].hasOwnProperty('instances'));
             test.done();
           }
         );
