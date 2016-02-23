@@ -37,7 +37,7 @@ var write = process.stdout.write;
 exports.jsinspect = {
   setUp: function(done) {
     // cleanup the temporary files even when an uncaught exception occurs
-    //tmp.setGracefulCleanup();
+    tmp.setGracefulCleanup();
 
     // mock process.stdout.write to have clean results
     process.stdout.write = function() {};
@@ -256,12 +256,11 @@ exports.jsinspect = {
     },
 
     reportToFile: function(test) {
-      tmp.dir({dir: __dirname}, function (err, tmpDir) {
+      tmp.dir(function (err, tmpDir) {
         if (err) {
           throw err;
         }
         var outputPath = path.join(tmpDir, 'report.json');
-        console.log('outputPath: ' + outputPath);
         runTask(
           'jsinspect:test',
           {
