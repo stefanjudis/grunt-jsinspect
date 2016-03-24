@@ -35,8 +35,7 @@ module.exports = function(grunt) {
       var rc;
       try {
         rc = JSON.parse(contents);
-      }
-      catch (error) {
+      } catch (error) {
         throw new Error('The JSON configuration file (' + options.configFile + ') is not valid.');
       }
 

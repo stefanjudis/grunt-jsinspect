@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 
     eslint: {
       options: {
-        config: '.eslintrc'
+        config: '.eslintrc.json'
       },
       all: ['Gruntfile.js', 'tasks/*.js', '<%= nodeunit.tests %>']
     },
