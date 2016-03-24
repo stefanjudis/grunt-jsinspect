@@ -241,7 +241,7 @@ exports.jsinspect = {
           {
             test: {
               options: {
-                failOnMatch: 2,
+                failOnMatch: 1,
                 threshold: 5
               },
               src: ['test/fixtures/two-duplicates.js']
@@ -277,7 +277,8 @@ exports.jsinspect = {
           function() {
             var result = require(outputPath);
             test.ok(Array.isArray(result));
-            test.strictEqual(result.length, 3);
+            test.strictEqual(result.length, 1);
+            test.ok(result[0].hasOwnProperty('instances'));
             test.done();
           }
         );
@@ -306,7 +307,8 @@ exports.jsinspect = {
           function() {
             var result = require(outputPath);
             test.ok(Array.isArray(result));
-            test.strictEqual(result.length, 3);
+            test.strictEqual(result.length, 1);
+            test.ok(result[0].hasOwnProperty('instances'));
             test.done();
           }
         );
