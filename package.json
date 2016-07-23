@@ -25,7 +25,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-nodeunit": "^1.0.0",
-    "grunt-eslint": "^18.0.0",
+    "grunt-eslint": "^19.0.0",
     "grunt-run-task": "^1.0.0",
     "tmp": "^0.0.28"
   },
