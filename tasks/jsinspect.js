@@ -7,20 +7,20 @@
 
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var strip = require('strip-json-comments');
-var Inspector = require('jsinspect/lib/inspector');
-var Reporter = require('jsinspect/lib/reporters');
+const fs = require('fs');
+const path = require('path');
+const strip = require('strip-json-comments');
+const Inspector = require('jsinspect/lib/inspector');
+const Reporter = require('jsinspect/lib/reporters');
 
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('jsinspect', 'Grunt task for jsinspect', function() {
-    var done = this.async();
-    var taskSucceeded = true;
-    var nbOfMatches = 0;
+    const done = this.async();
+    let taskSucceeded = true;
+    let nbOfMatches = 0;
 
-    var options = this.options({
+    const options = this.options({
       threshold:   30,
       diff:        true,
       identifiers: false,
@@ -31,8 +31,8 @@ module.exports = function(grunt) {
     });
 
     if (fs.existsSync(options.configFile) && fs.lstatSync(options.configFile).isFile()) {
-      var contents = strip(fs.readFileSync(options.configFile, 'utf8'));
-      var rc;
+      const contents = strip(fs.readFileSync(options.configFile, 'utf8'));
+      let rc;
       try {
         rc = JSON.parse(contents);
       } catch (error) {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
       });
     }
 
-    var inspector = new Inspector(this.filesSrc, {
+    const inspector = new Inspector(this.filesSrc, {
       threshold:   options.threshold,
       diff:        options.diff,
       identifiers: options.identifiers

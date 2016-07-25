@@ -12,6 +12,7 @@
 ## Getting Started
 
 This plugin requires Grunt version `>=0.4.0`, verbally the minimum of `0.4.0`.
+The minimum Node.js version supported is [`4.2.0` (the first LTS version)](https://nodejs.org/en/blog/release/v4.2.0/).
 
 If you haven’t used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
