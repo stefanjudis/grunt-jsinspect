@@ -30,7 +30,14 @@ module.exports = function(grunt) {
       configFile:  '.jsinspectrc'
     });
 
-    if (fs.existsSync(options.configFile) && fs.lstatSync(options.configFile).isFile()) {
+    let configStat;
+    try {
+      configStat = fs.lstatSync(options.configFile);
+    } catch (error) {
+      // There is no config file
+    }
+
+    if (configStat && configStat.isFile()) {
       const contents = strip(fs.readFileSync(options.configFile, 'utf8'));
       let rc;
       try {
