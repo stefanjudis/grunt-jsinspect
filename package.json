@@ -20,7 +20,7 @@
     "test": "grunt -- test"
   },
   "engines": {
-    "node": ">=4.2.0"
+    "node": ">=6.9.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
