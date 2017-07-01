@@ -40,13 +40,14 @@ grunt.initConfig({
   jsinspect: {
     examples: {
       options: {
-        threshold:   30,
-        diff:        true,
-        identifiers: false,
-        failOnMatch: true,
-        suppress:    100,
-        reporter:    'default',
-        configFile:  '.jsinspectrc'
+        threshold:     30,
+        diff:          true,
+        identifiers:   false,
+        failOnMatch:   true,
+        truncate:      100,
+        reporter:      'default',
+        debug:         false,
+        configFile:    '.jsinspectrc'
       },
       src: [
         '**/*.js'
@@ -106,11 +107,11 @@ The configuration file should be valid JSON, but can contain comments, which are
 
 ```js
 {
-  "threshold":     30,
-  "identifiers":   true,
-  "ignore":        "Test.js|Spec.js", // used as RegExp,
-  "reporter":      "json",
-  "suppress":      100
+  "threshold":       30,
+  "noIdentifiers":   true,
+  "ignore":          "Test.js|Spec.js", // used as RegExp,
+  "reporter":        "json",
+  "truncate":        100
 }
 ```
 
@@ -165,7 +166,7 @@ The destination directory must already exist.
 You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
 
 
-### options.suppress
+### options.truncate
 
 Type: `number`
 
@@ -187,4 +188,3 @@ Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyon
 ## License
 
 Copyright (c) Stefan Judis and Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)
-

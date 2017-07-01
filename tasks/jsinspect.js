@@ -25,8 +25,9 @@ module.exports = function(grunt) {
       diff:        true,
       identifiers: false,
       failOnMatch: true,
-      suppress:    100,
+      truncate:    100,
       reporter:    'default',
+      debug:       false,
       configFile:  '.jsinspectrc'
     });
 
@@ -81,7 +82,7 @@ module.exports = function(grunt) {
     this.reporterType = new Reporter[options.reporter](inspector, {
       writableStream: writableStream,
       diff: options.diff,
-      suppress: options.suppress
+      identifiers: options.identifiers
     });
 
     if (typeof options.failOnMatch === 'number') {
