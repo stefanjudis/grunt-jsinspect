@@ -40,14 +40,14 @@ grunt.initConfig({
   jsinspect: {
     examples: {
       options: {
-        threshold:     30,
-        diff:          true,
-        identifiers:   false,
-        failOnMatch:   true,
-        truncate:      100,
-        reporter:      'default',
-        debug:         false,
-        configFile:    '.jsinspectrc'
+        threshold:    30,
+        identifiers:  false,
+        literals:     true,
+        truncate:     100,
+        minInstances: 2,
+        reporter:     'default',
+        failOnMatch:  true,
+        configFile:   '.jsinspectrc'
       },
       src: [
         '**/*.js'
@@ -107,11 +107,11 @@ The configuration file should be valid JSON, but can contain comments, which are
 
 ```js
 {
-  "threshold":       30,
-  "noIdentifiers":   true,
-  "ignore":          "Test.js|Spec.js", // used as RegExp,
-  "reporter":        "json",
-  "truncate":        100
+  "threshold":     30,
+  "identifiers":   true,
+  "ignore":        "Test.js|Spec.js", // used as RegExp,
+  "reporter":      "json",
+  "truncate":      100
 }
 ```
 
@@ -123,13 +123,6 @@ Type: `number`
 Default value: `30`
 
 Number of nodes
-
-
-### options.diff
-
-Type: `boolean`
-
-Default value: `true`
 
 
 ### options.identifiers
