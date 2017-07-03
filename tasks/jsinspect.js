@@ -21,17 +21,18 @@ module.exports = function(grunt) {
     let nbOfMatches = 0;
 
     const options = this.options({
-      // jsinspect options
-      threshold:    30,
+      // jsinspect specific options
       identifiers:  false,
       literals:     true,
-      truncate:     100,
       minInstances: 2,
       reporter:     'default',
+      threshold:    30,
+      truncate:     100,
 
       // options used for grunt-jsinspect
+      configFile:   '.jsinspectrc',
       failOnMatch:  true,
-      configFile:   '.jsinspectrc'
+      outputPath:   undefined
     });
 
     let configStat;

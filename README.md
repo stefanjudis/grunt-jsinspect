@@ -40,14 +40,18 @@ grunt.initConfig({
   jsinspect: {
     examples: {
       options: {
-        threshold:    30,
+        // jsinspect specific options
         identifiers:  false,
         literals:     true,
-        truncate:     100,
         minInstances: 2,
         reporter:     'default',
+        threshold:    30,
+        truncate:     100,
+
+        // options used for grunt-jsinspect
+        configFile:   '.jsinspectrc',
         failOnMatch:  true,
-        configFile:   '.jsinspectrc'
+        outputPath:   undefined
       },
       src: [
         '**/*.js'
@@ -116,22 +120,24 @@ The configuration file should be valid JSON, but can contain comments, which are
 ```
 
 
-### options.threshold
+### options.failOnMatch
 
-Type: `number`
+Type: `boolean|number`
 
-Default value: `30`
+Default value: `true`
 
-Number of nodes
+Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
 
 
-### options.identifiers
+### options.outputPath
 
-Type: `boolean`
+Type: `string`
 
-Default value: `false`
+Default value: `undefined`
 
-Match identifiers
+Specify the path of the output file.
+The destination directory must already exist.
+You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
 
 
 ### options.reporter
@@ -148,35 +154,21 @@ Please see the
 file of the `jsinspect` project in order to find out about the existing reporters.
 
 
-### options.outputPath
+### Other options passed directly to `jsinspect`
 
-Type: `string`
+Code inspector specific options:
 
-Default value: `undefined`
+* `threshold`, type `number`, defaults to `30`
+* `literals`, type `boolean`, defaults to ``
+* `minInstances`, type `number`, defaults to `2`
+* `identifiers`, type `boolean`, defaults to `false`
 
-Specify the path of the output file.
-The destination directory must already exist.
-You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
+Options passed to the selected reporter:
 
+* `truncate`, type `number`, defaults to `100`
+* `identifiers`, type `boolean`, defaults to `false`
 
-### options.truncate
-
-Type: `number`
-
-Default value: `100`
-
-Length to suppress diffs.
-Use `0` to disable.
-
-
-### options.failOnMatch
-
-Type: `boolean|number`
-
-Default value: `true`
-
-Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
-
+For further details about each of these options, [see the `jsinspect` documentation](https://github.com/danielstjules/jsinspect#usage).
 
 ## License
 
