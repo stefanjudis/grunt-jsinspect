@@ -21,13 +21,18 @@ module.exports = function(grunt) {
     let nbOfMatches = 0;
 
     const options = this.options({
-      threshold:   30,
-      diff:        true,
-      identifiers: false,
-      failOnMatch: true,
-      suppress:    100,
-      reporter:    'default',
-      configFile:  '.jsinspectrc'
+      // jsinspect specific options
+      identifiers:  false,
+      literals:     true,
+      minInstances: 2,
+      reporter:     'default',
+      threshold:    30,
+      truncate:     100,
+
+      // options used for grunt-jsinspect
+      configFile:   '.jsinspectrc',
+      failOnMatch:  true,
+      outputPath:   undefined
     });
 
     let configStat;
@@ -54,9 +59,10 @@ module.exports = function(grunt) {
     }
 
     const inspector = new Inspector(this.filesSrc, {
-      threshold:   options.threshold,
-      diff:        options.diff,
-      identifiers: options.identifiers
+      threshold:    options.threshold,
+      literals:     options.literals,
+      minInstances: options.minInstances,
+      identifiers:  options.identifiers
     });
 
     if (!Reporter.hasOwnProperty(options.reporter) ||
@@ -80,8 +86,8 @@ module.exports = function(grunt) {
 
     this.reporterType = new Reporter[options.reporter](inspector, {
       writableStream: writableStream,
-      diff: options.diff,
-      suppress: options.suppress
+      truncate: options.truncate,
+      identifiers: options.identifiers
     });
 
     if (typeof options.failOnMatch === 'number') {

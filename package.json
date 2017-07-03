@@ -20,7 +20,7 @@
     "test": "grunt -- test"
   },
   "engines": {
-    "node": ">=4.2.0"
+    "node": ">=6.9.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -39,7 +39,7 @@
     "inspect"
   ],
   "dependencies": {
-    "jsinspect": "^0.8.0",
+    "jsinspect": "^0.12.6",
     "strip-json-comments": "^2.0.1"
   }
 }

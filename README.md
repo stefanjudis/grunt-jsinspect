@@ -12,7 +12,7 @@
 ## Getting Started
 
 This plugin requires Grunt version `>=0.4.0`, verbally the minimum of `0.4.0`.
-The minimum Node.js version supported is [`4.2.0` (the first LTS version)](https://nodejs.org/en/blog/release/v4.2.0/).
+The minimum Node.js version supported is [`6.9.0` (the second LTS version)](https://nodejs.org/en/blog/release/v6.9.0/).
 
 If you haven’t used [Grunt](http://gruntjs.com/) before, be sure to check out the
 [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to
@@ -40,13 +40,18 @@ grunt.initConfig({
   jsinspect: {
     examples: {
       options: {
-        threshold:   30,
-        diff:        true,
-        identifiers: false,
-        failOnMatch: true,
-        suppress:    100,
-        reporter:    'default',
-        configFile:  '.jsinspectrc'
+        // jsinspect specific options
+        identifiers:  false,
+        literals:     true,
+        minInstances: 2,
+        reporter:     'default',
+        threshold:    30,
+        truncate:     100,
+
+        // options used for grunt-jsinspect
+        configFile:   '.jsinspectrc',
+        failOnMatch:  true,
+        outputPath:   undefined
       },
       src: [
         '**/*.js'
@@ -110,34 +115,29 @@ The configuration file should be valid JSON, but can contain comments, which are
   "identifiers":   true,
   "ignore":        "Test.js|Spec.js", // used as RegExp,
   "reporter":      "json",
-  "suppress":      100
+  "truncate":      100
 }
 ```
 
 
-### options.threshold
+### options.failOnMatch
 
-Type: `number`
-
-Default value: `30`
-
-Number of nodes
-
-
-### options.diff
-
-Type: `boolean`
+Type: `boolean|number`
 
 Default value: `true`
 
+Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
 
-### options.identifiers
 
-Type: `boolean`
+### options.outputPath
 
-Default value: `false`
+Type: `string`
 
-Match identifiers
+Default value: `undefined`
+
+Specify the path of the output file.
+The destination directory must already exist.
+You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
 
 
 ### options.reporter
@@ -154,37 +154,22 @@ Please see the
 file of the `jsinspect` project in order to find out about the existing reporters.
 
 
-### options.outputPath
+### Other options passed directly to `jsinspect`
 
-Type: `string`
+Code inspector specific options:
 
-Default value: `undefined`
+* `threshold`, type `number`, defaults to `30`
+* `literals`, type `boolean`, defaults to ``
+* `minInstances`, type `number`, defaults to `2`
+* `identifiers`, type `boolean`, defaults to `false`
 
-Specify the path of the output file.
-The destination directory must already exist.
-You’ll probably want to pick a file extension which corresponds with the chosen [reporter](#reporter).
+Options passed to the selected reporter:
 
+* `truncate`, type `number`, defaults to `100`
+* `identifiers`, type `boolean`, defaults to `false`
 
-### options.suppress
-
-Type: `number`
-
-Default value: `100`
-
-Length to suppress diffs.
-Use `0` to disable.
-
-
-### options.failOnMatch
-
-Type: `boolean|number`
-
-Default value: `true`
-
-Use a number as a threshold (e.g. use `42` to pass for 41 matches but fail beyond 42 matches).
-
+For further details about each of these options, [see the `jsinspect` documentation](https://github.com/danielstjules/jsinspect#usage).
 
 ## License
 
 Copyright (c) Stefan Judis and Juga Paazmaya, licensed under [the MIT license](LICENSE-MIT)
-
