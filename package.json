@@ -23,11 +23,11 @@
     "node": ">=6.9.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-eslint": "^20.0.0",
+    "grunt-eslint": "^21.0.0",
     "grunt-run-task": "^1.0.0",
-    "tmp": "^0.0.31"
+    "tmp": "^0.0.33"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
@@ -39,7 +39,7 @@
     "inspect"
   ],
   "dependencies": {
-    "jsinspect": "^0.12.6",
+    "jsinspect": "^0.12.7",
     "strip-json-comments": "^2.0.1"
   }
 }
